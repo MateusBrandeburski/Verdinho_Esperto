@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Nome do arquivo a ser modificado
-FILE_PATH="/home/usuario/Worldir/prioritario/Verdinho_Esperto/arquivo.txt"
+FILE_PATH="/home/mateusbrandeburski/robos-coletas/Verdinho_Esperto/arquivo.txt"
 
 # Verificar se o arquivo existe
 if [ ! -f "$FILE_PATH" ]; then
