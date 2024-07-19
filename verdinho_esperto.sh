@@ -1,25 +1,21 @@
 #!/bin/bash
 
-# Nome do arquivo a ser modificado
-FILE_PATH="/home/mateusbrandeburski/robos-coletas/Verdinho_Esperto/arquivo.txt"
+REPO_DIR="$HOME/robos-coletas/verdinho"
+FILE_PATH="$REPO_DIR/arquivo.txt"
+LOG_FILE="/var/log/automacoes/verdinho_esperto_out.log"
 
-# Verificar se o arquivo existe
+cd $REPO_DIR || { echo "Diretório do repositório não encontrado!" | tee -a $LOG_FILE; exit 1; }
+
 if [ ! -f "$FILE_PATH" ]; then
-  echo "Arquivo não encontrado!"
+  echo "Arquivo não encontrado!" | tee -a $LOG_FILE
   exit 1
 fi
 
-# Adicionar uma quebra de linha ao final do arquivo
 echo "" >> $FILE_PATH
+git add $FILE_PATH 2>&1 | tee -a $LOG_FILE
 
-# Adicionar o arquivo modificado ao stage do Git
-git add $FILE_PATH
+git add verdinho_esperto.sh
 
-# Formatar a data e a hora no padrão brasileiro
 COMMIT_MESSAGE=$(date +"%d/%m/%Y às %H:%M:%S")
-
-# Fazer o commit com a mensagem especificada
-git commit -m "$COMMIT_MESSAGE"
-
-# Push das alterações para o repositório remoto
-git push origin main
+git commit -m "$COMMIT_MESSAGE" 2>&1 | tee -a $LOG_FILE
+git push origin main 2>&1 | tee -a $LOG_FILE
