@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPO_DIR="$HOME/robos-coletas/verdinho"
+REPO_DIR="$HOME/verdinho"
 FILE_PATH="$REPO_DIR/arquivo.txt"
 LOG_FILE="/var/log/automacoes/verdinho_esperto_out.log"
 
