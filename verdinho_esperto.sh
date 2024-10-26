@@ -2,18 +2,21 @@
 
 REPO_DIR="$HOME/verdinho"
 FILE_PATH="$REPO_DIR/arquivo.txt"
-LOG_FILE="/var/log/automacoes/verdinho_esperto_out.log"
+LOG_FILE="$REPO_DIR/log.txt"  # Adicionei uma definição para LOG_FILE
 
-cd $REPO_DIR || { echo "Diretório do repositório não encontrado!" | tee -a $LOG_FILE; exit 1; }
+# Mensagem a ser adicionada ao arquivo
+MESSAGE="Adicionando nova entrada em $(date +"%d/%m/%Y às %H:%M:%S")"
 
-if [ ! -f "$FILE_PATH" ]; then
-  echo "Arquivo não encontrado!" | tee -a $LOG_FILE
-  exit 1
-fi
+# Adiciona a mensagem ao arquivo
+echo "$MESSAGE" >> "$FILE_PATH"
 
-echo "" >> $FILE_PATH
-git add $FILE_PATH 2>&1 | tee -a $LOG_FILE
+# Adiciona o arquivo ao staging
+git add "$FILE_PATH" 2>&1 | tee -a "$LOG_FILE"
 
+# Cria mensagem de commit com data e hora
 COMMIT_MESSAGE=$(date +"%d/%m/%Y às %H:%M:%S")
-git commit -m "$COMMIT_MESSAGE" 2>&1 | tee -a $LOG_FILE
-git push origin main 2>&1 | tee -a $LOG_FILE
+git commit -m "$COMMIT_MESSAGE" 2>&1 | tee -a "$LOG_FILE"
+
+# Faz o push para o repositório
+git push origin main 2>&1 | tee -a "$LOG_FILE"
+
