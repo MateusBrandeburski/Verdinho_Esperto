@@ -69,3 +69,4 @@ Os quadradinhos verdes do GitHub são uma métrica interessante, mas não devem 
 
 - [GitHub Contributions Guide](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/viewing-contributions-on-your-profile)
 - [Understanding GitHub Activity](https://github.blog/2016-08-16
+# verdinho_viciado
